@@ -185,19 +185,19 @@ export class ProductControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/cart_id")
+  @common.Get("/:id/my_cart")
   @ApiNestedQuery(CartFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "Cart",
     action: "read",
     possession: "any",
   })
-  async findManyCartId(
+  async findManyMyCart(
     @common.Req() request: Request,
     @common.Param() params: ProductWhereUniqueInput
   ): Promise<Cart[]> {
     const query = plainToClass(CartFindManyArgs, request.query);
-    const results = await this.service.findCartId(params.id, {
+    const results = await this.service.findMyCart(params.id, {
       ...query,
       select: {
         id: true,
@@ -213,18 +213,18 @@ export class ProductControllerBase {
     return results;
   }
 
-  @common.Post("/:id/cart_id")
+  @common.Post("/:id/my_cart")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
     possession: "any",
   })
-  async connectCartId(
+  async connectMyCart(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() body: CartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cart_id: {
+      my_cart: {
         connect: body,
       },
     };
@@ -235,18 +235,18 @@ export class ProductControllerBase {
     });
   }
 
-  @common.Patch("/:id/cart_id")
+  @common.Patch("/:id/my_cart")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
     possession: "any",
   })
-  async updateCartId(
+  async updateMyCart(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() body: CartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cart_id: {
+      my_cart: {
         set: body,
       },
     };
@@ -257,18 +257,18 @@ export class ProductControllerBase {
     });
   }
 
-  @common.Delete("/:id/cart_id")
+  @common.Delete("/:id/my_cart")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
     possession: "any",
   })
-  async disconnectCartId(
+  async disconnectMyCart(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() body: CartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cart_id: {
+      my_cart: {
         disconnect: body,
       },
     };

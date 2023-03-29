@@ -22,7 +22,7 @@ model Product {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  cart_id   Cart[]
+  my_cart   Cart[]
 }
 
 model Cart {

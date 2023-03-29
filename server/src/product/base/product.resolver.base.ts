@@ -154,11 +154,11 @@ export class ProductResolverBase {
     action: "read",
     possession: "any",
   })
-  async cartId(
+  async myCart(
     @graphql.Parent() parent: Product,
     @graphql.Args() args: CartFindManyArgs
   ): Promise<Cart[]> {
-    const results = await this.service.findCartId(parent.id, args);
+    const results = await this.service.findMyCart(parent.id, args);
 
     if (!results) {
       return [];

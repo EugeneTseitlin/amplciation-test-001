@@ -3,5 +3,5 @@ import { CartListRelationFilter } from "../cart/CartListRelationFilter";
 
 export type ProductWhereInput = {
   id?: StringFilter;
-  cart_id?: CartListRelationFilter;
+  my_cart?: CartListRelationFilter;
 };

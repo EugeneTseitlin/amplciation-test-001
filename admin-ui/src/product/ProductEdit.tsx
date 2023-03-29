@@ -13,7 +13,7 @@ export const ProductEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <ReferenceArrayInput
-          source="cart_id"
+          source="my_cart"
           reference="Cart"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

@@ -47,7 +47,7 @@ export class ProductServiceBase {
     return this.prisma.product.delete(args);
   }
 
-  async findCartId(
+  async findMyCart(
     parentId: string,
     args: Prisma.CartFindManyArgs
   ): Promise<Cart[]> {
@@ -55,6 +55,6 @@ export class ProductServiceBase {
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .cart_id(args);
+      .my_cart(args);
   }
 }
