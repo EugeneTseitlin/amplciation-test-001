@@ -10,40 +10,37 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
-import { SortOrder } from "../../util/SortOrder";
 
-@InputType({
-  isAbstract: true,
-  description: undefined,
-})
-class ProductOrderByInput {
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
+@InputType()
+class CartUpdateManyWithoutProductsInput {
+  @Field(() => [CartWhereUniqueInput], {
     nullable: true,
   })
-  id?: SortOrder;
-
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    type: () => [CartWhereUniqueInput],
   })
-  @Field(() => SortOrder, {
+  connect?: Array<CartWhereUniqueInput>;
+
+  @Field(() => [CartWhereUniqueInput], {
     nullable: true,
   })
-  createdAt?: SortOrder;
-
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    type: () => [CartWhereUniqueInput],
   })
-  @Field(() => SortOrder, {
+  disconnect?: Array<CartWhereUniqueInput>;
+
+  @Field(() => [CartWhereUniqueInput], {
     nullable: true,
   })
-  updatedAt?: SortOrder;
+  @ApiProperty({
+    required: false,
+    type: () => [CartWhereUniqueInput],
+  })
+  set?: Array<CartWhereUniqueInput>;
 }
 
-export { ProductOrderByInput as ProductOrderByInput };
+export { CartUpdateManyWithoutProductsInput as CartUpdateManyWithoutProductsInput };

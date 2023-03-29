@@ -1,5 +1,5 @@
-import { CartWhereUniqueInput } from "../cart/CartWhereUniqueInput";
+import { CartCreateNestedManyWithoutProductsInput } from "./CartCreateNestedManyWithoutProductsInput";
 
 export type ProductCreateInput = {
-  my_cart?: CartWhereUniqueInput | null;
+  carts?: CartCreateNestedManyWithoutProductsInput;
 };

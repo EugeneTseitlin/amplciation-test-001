@@ -9,14 +9,14 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { ProductList } from "./product/ProductList";
-import { ProductCreate } from "./product/ProductCreate";
-import { ProductEdit } from "./product/ProductEdit";
-import { ProductShow } from "./product/ProductShow";
 import { CartList } from "./cart/CartList";
 import { CartCreate } from "./cart/CartCreate";
 import { CartEdit } from "./cart/CartEdit";
 import { CartShow } from "./cart/CartShow";
+import { ProductList } from "./product/ProductList";
+import { ProductCreate } from "./product/ProductCreate";
+import { ProductEdit } from "./product/ProductEdit";
+import { ProductShow } from "./product/ProductShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -51,18 +51,18 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="Product"
-          list={ProductList}
-          edit={ProductEdit}
-          create={ProductCreate}
-          show={ProductShow}
-        />
-        <Resource
           name="Cart"
           list={CartList}
           edit={CartEdit}
           create={CartCreate}
           show={CartShow}
+        />
+        <Resource
+          name="Product"
+          list={ProductList}
+          edit={ProductEdit}
+          create={ProductCreate}
+          show={ProductShow}
         />
       </Admin>
     </div>

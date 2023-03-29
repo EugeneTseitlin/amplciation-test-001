@@ -25,6 +25,7 @@ import { DeleteProductArgs } from "./DeleteProductArgs";
 import { ProductFindManyArgs } from "./ProductFindManyArgs";
 import { ProductFindUniqueArgs } from "./ProductFindUniqueArgs";
 import { Product } from "./Product";
+import { CartFindManyArgs } from "../../cart/base/CartFindManyArgs";
 import { Cart } from "../../cart/base/Cart";
 import { ProductService } from "../product.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -96,15 +97,7 @@ export class ProductResolverBase {
   ): Promise<Product> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        my_cart: args.data.my_cart
-          ? {
-              connect: args.data.my_cart,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -121,15 +114,7 @@ export class ProductResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          my_cart: args.data.my_cart
-            ? {
-                connect: args.data.my_cart,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -163,18 +148,22 @@ export class ProductResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Cart, { nullable: true })
+  @graphql.ResolveField(() => [Cart])
   @nestAccessControl.UseRoles({
     resource: "Cart",
     action: "read",
     possession: "any",
   })
-  async myCart(@graphql.Parent() parent: Product): Promise<Cart | null> {
-    const result = await this.service.getMyCart(parent.id);
+  async carts(
+    @graphql.Parent() parent: Product,
+    @graphql.Args() args: CartFindManyArgs
+  ): Promise<Cart[]> {
+    const results = await this.service.findCarts(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }
