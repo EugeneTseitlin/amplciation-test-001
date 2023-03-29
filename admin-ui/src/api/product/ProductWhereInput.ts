@@ -1,7 +1,7 @@
 import { StringFilter } from "../../util/StringFilter";
-import { CartListRelationFilter } from "../cart/CartListRelationFilter";
+import { CartWhereUniqueInput } from "../cart/CartWhereUniqueInput";
 
 export type ProductWhereInput = {
   id?: StringFilter;
-  my_cart?: CartListRelationFilter;
+  my_cart?: CartWhereUniqueInput;
 };

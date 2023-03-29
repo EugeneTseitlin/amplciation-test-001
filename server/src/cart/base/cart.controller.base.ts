@@ -203,6 +203,12 @@ export class CartControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
+
+        my_cart: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (results === null) {

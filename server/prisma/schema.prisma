@@ -22,7 +22,8 @@ model Product {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  my_cart   Cart[]
+  my_cart   Cart?    @relation(fields: [my_cartId], references: [id])
+  my_cartId String?
 }
 
 model Cart {

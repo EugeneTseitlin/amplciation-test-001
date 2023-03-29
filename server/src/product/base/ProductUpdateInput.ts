@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CartUpdateManyWithoutProductsInput } from "./CartUpdateManyWithoutProductsInput";
+import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -19,15 +19,15 @@ import { Type } from "class-transformer";
 class ProductUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => CartUpdateManyWithoutProductsInput,
+    type: () => CartWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => CartUpdateManyWithoutProductsInput)
+  @Type(() => CartWhereUniqueInput)
   @IsOptional()
-  @Field(() => CartUpdateManyWithoutProductsInput, {
+  @Field(() => CartWhereUniqueInput, {
     nullable: true,
   })
-  my_cart?: CartUpdateManyWithoutProductsInput;
+  my_cart?: CartWhereUniqueInput | null;
 }
 
 export { ProductUpdateInput as ProductUpdateInput };

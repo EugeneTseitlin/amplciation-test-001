@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { CartListRelationFilter } from "../../cart/base/CartListRelationFilter";
+import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
 
 @InputType()
 class ProductWhereInput {
@@ -31,15 +31,15 @@ class ProductWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => CartListRelationFilter,
+    type: () => CartWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => CartListRelationFilter)
+  @Type(() => CartWhereUniqueInput)
   @IsOptional()
-  @Field(() => CartListRelationFilter, {
+  @Field(() => CartWhereUniqueInput, {
     nullable: true,
   })
-  my_cart?: CartListRelationFilter;
+  my_cart?: CartWhereUniqueInput;
 }
 
 export { ProductWhereInput as ProductWhereInput };
