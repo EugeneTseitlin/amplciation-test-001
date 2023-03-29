@@ -4,5 +4,5 @@ export type Cart = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  products?: Array<Product>;
+  my_product?: Product | null;
 };

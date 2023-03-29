@@ -47,14 +47,11 @@ export class CartServiceBase {
     return this.prisma.cart.delete(args);
   }
 
-  async findProducts(
-    parentId: string,
-    args: Prisma.ProductFindManyArgs
-  ): Promise<Product[]> {
+  async getMyProduct(parentId: string): Promise<Product | null> {
     return this.prisma.cart
-      .findUniqueOrThrow({
+      .findUnique({
         where: { id: parentId },
       })
-      .products(args);
+      .my_product();
   }
 }

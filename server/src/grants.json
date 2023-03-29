@@ -31,61 +31,61 @@
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Cart",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Cart",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Cart",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Cart",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Cart",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Cart",
+    "resource": "Product",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Cart",
+    "resource": "Product",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Cart",
+    "resource": "Product",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Cart",
+    "resource": "Product",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Cart",
+    "resource": "Product",
     "action": "read:any",
     "attributes": "*"
   }

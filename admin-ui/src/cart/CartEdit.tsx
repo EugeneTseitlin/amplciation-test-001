@@ -3,8 +3,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 import { ProductTitle } from "../product/ProductTitle";
 
@@ -12,14 +12,13 @@ export const CartEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="products"
+        <ReferenceInput
+          source="my_product.id"
           reference="Product"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
+          label="my_product"
         >
-          <SelectArrayInput optionText={ProductTitle} />
-        </ReferenceArrayInput>
+          <SelectInput optionText={ProductTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

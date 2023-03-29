@@ -18,17 +18,17 @@ model User {
   roles     Json
 }
 
+model Cart {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  my_product   Product? @relation(fields: [my_productId], references: [id])
+  my_productId String?
+}
+
 model Product {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  my_cart   Cart?    @relation(fields: [my_cartId], references: [id])
-  my_cartId String?
-}
-
-model Cart {
-  id        String    @id @default(cuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  products  Product[]
+  carts     Cart[]
 }

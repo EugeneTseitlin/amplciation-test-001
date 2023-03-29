@@ -3,8 +3,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 import { CartTitle } from "../cart/CartTitle";
 
@@ -12,9 +12,14 @@ export const ProductCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput source="my_cart.id" reference="Cart" label="my_cart">
-          <SelectInput optionText={CartTitle} />
-        </ReferenceInput>
+        <ReferenceArrayInput
+          source="carts"
+          reference="Cart"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={CartTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

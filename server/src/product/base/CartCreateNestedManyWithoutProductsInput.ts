@@ -10,40 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
-import { SortOrder } from "../../util/SortOrder";
 
-@InputType({
-  isAbstract: true,
-  description: undefined,
-})
-class ProductOrderByInput {
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
+@InputType()
+class CartCreateNestedManyWithoutProductsInput {
+  @Field(() => [CartWhereUniqueInput], {
     nullable: true,
   })
-  id?: SortOrder;
-
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    type: () => [CartWhereUniqueInput],
   })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  createdAt?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  updatedAt?: SortOrder;
+  connect?: Array<CartWhereUniqueInput>;
 }
 
-export { ProductOrderByInput as ProductOrderByInput };
+export { CartCreateNestedManyWithoutProductsInput as CartCreateNestedManyWithoutProductsInput };

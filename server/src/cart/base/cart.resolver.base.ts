@@ -25,7 +25,6 @@ import { DeleteCartArgs } from "./DeleteCartArgs";
 import { CartFindManyArgs } from "./CartFindManyArgs";
 import { CartFindUniqueArgs } from "./CartFindUniqueArgs";
 import { Cart } from "./Cart";
-import { ProductFindManyArgs } from "../../product/base/ProductFindManyArgs";
 import { Product } from "../../product/base/Product";
 import { CartService } from "../cart.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -91,7 +90,15 @@ export class CartResolverBase {
   async createCart(@graphql.Args() args: CreateCartArgs): Promise<Cart> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        my_product: args.data.my_product
+          ? {
+              connect: args.data.my_product,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -106,7 +113,15 @@ export class CartResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          my_product: args.data.my_product
+            ? {
+                connect: args.data.my_product,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -138,22 +153,18 @@ export class CartResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Product])
+  @graphql.ResolveField(() => Product, { nullable: true })
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "read",
     possession: "any",
   })
-  async products(
-    @graphql.Parent() parent: Cart,
-    @graphql.Args() args: ProductFindManyArgs
-  ): Promise<Product[]> {
-    const results = await this.service.findProducts(parent.id, args);
+  async myProduct(@graphql.Parent() parent: Cart): Promise<Product | null> {
+    const result = await this.service.getMyProduct(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 }
