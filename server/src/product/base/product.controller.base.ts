@@ -185,7 +185,7 @@ export class ProductControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/cartId")
+  @common.Get("/:id/cart_id")
   @ApiNestedQuery(CartFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "Cart",
@@ -213,7 +213,7 @@ export class ProductControllerBase {
     return results;
   }
 
-  @common.Post("/:id/cartId")
+  @common.Post("/:id/cart_id")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
@@ -224,7 +224,7 @@ export class ProductControllerBase {
     @common.Body() body: CartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cartId: {
+      cart_id: {
         connect: body,
       },
     };
@@ -235,7 +235,7 @@ export class ProductControllerBase {
     });
   }
 
-  @common.Patch("/:id/cartId")
+  @common.Patch("/:id/cart_id")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
@@ -246,7 +246,7 @@ export class ProductControllerBase {
     @common.Body() body: CartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cartId: {
+      cart_id: {
         set: body,
       },
     };
@@ -257,7 +257,7 @@ export class ProductControllerBase {
     });
   }
 
-  @common.Delete("/:id/cartId")
+  @common.Delete("/:id/cart_id")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
@@ -268,7 +268,7 @@ export class ProductControllerBase {
     @common.Body() body: CartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cartId: {
+      cart_id: {
         disconnect: body,
       },
     };

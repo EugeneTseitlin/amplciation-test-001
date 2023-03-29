@@ -55,6 +55,6 @@ export class ProductServiceBase {
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .cartId(args);
+      .cart_id(args);
   }
 }

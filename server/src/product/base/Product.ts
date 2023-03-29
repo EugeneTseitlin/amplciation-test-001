@@ -48,7 +48,7 @@ class Product {
   @ValidateNested()
   @Type(() => Cart)
   @IsOptional()
-  cartId?: Array<Cart>;
+  cart_id?: Array<Cart>;
 }
 
 export { Product as Product };

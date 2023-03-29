@@ -27,7 +27,7 @@ class ProductUpdateInput {
   @Field(() => CartUpdateManyWithoutProductsInput, {
     nullable: true,
   })
-  cartId?: CartUpdateManyWithoutProductsInput;
+  cart_id?: CartUpdateManyWithoutProductsInput;
 }
 
 export { ProductUpdateInput as ProductUpdateInput };
