@@ -9,10 +9,14 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { MyCustomerList } from "./myCustomer/MyCustomerList";
-import { MyCustomerCreate } from "./myCustomer/MyCustomerCreate";
-import { MyCustomerEdit } from "./myCustomer/MyCustomerEdit";
-import { MyCustomerShow } from "./myCustomer/MyCustomerShow";
+import { ProductList } from "./product/ProductList";
+import { ProductCreate } from "./product/ProductCreate";
+import { ProductEdit } from "./product/ProductEdit";
+import { ProductShow } from "./product/ProductShow";
+import { CartList } from "./cart/CartList";
+import { CartCreate } from "./cart/CartCreate";
+import { CartEdit } from "./cart/CartEdit";
+import { CartShow } from "./cart/CartShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -47,11 +51,18 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="MyCustomer"
-          list={MyCustomerList}
-          edit={MyCustomerEdit}
-          create={MyCustomerCreate}
-          show={MyCustomerShow}
+          name="Product"
+          list={ProductList}
+          edit={ProductEdit}
+          create={ProductCreate}
+          show={ProductShow}
+        />
+        <Resource
+          name="Cart"
+          list={CartList}
+          edit={CartEdit}
+          create={CartCreate}
+          show={CartShow}
         />
       </Admin>
     </div>
